@@ -6,7 +6,7 @@
 Java programs generally consist of multiple files (as a
 "project"). When a project is executed, there is one
 file where the execution begins. That is the file with
-the special file name `main`. In addition, the function
+the special `main` function. In addition, the function
 header must be written exactly as given below,
 
 `public static void main(String[] args)`
