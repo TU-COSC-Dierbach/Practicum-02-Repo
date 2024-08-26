@@ -3,7 +3,7 @@
 ## Practicum 2- Understanding `public static void main` in Java (5 pts.)
 
 **BACKGROUND**<br>
-Java programs generally consist of multiple file (as a
+Java programs generally consist of multiple files (as a
 "project"). When a project is executed, there is one
 file where the execution begins. That is the file with
 the special file name `main`. In addition, the function
