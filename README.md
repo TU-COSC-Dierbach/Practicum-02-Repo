@@ -11,7 +11,7 @@ header must be written exactly as given below,
 
 `public static void main(String[] args)`
 
-So what is required syntax about? Every class is 
+So what is this required syntax about? Every class is 
 (generally) in its own file in Java. Entities within
 a class (such as function main) are not directly 
 accessible unless they are declared `public`. (This will 
