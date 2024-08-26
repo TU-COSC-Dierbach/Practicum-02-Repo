@@ -37,7 +37,7 @@ display something about the program at that point
 (what part of a program has been reached
 and/or the values of particular varaiables at that point).
 Thus, a program can be designed so that the trace statements
-are only displayed when requested,, e.g.,<br>
+are only displayed when requested, e.g.,<br>
 
 `java my_program`
 
