@@ -31,16 +31,18 @@ Although it is not commonly used (and we will not make
 use of it) parameter values can be provided when 
 executing a Java program that causes the program to
 behave in different ways. A classic example is to run 
-a program with `trace on`. If a program is written with
-various "trace statements" used when testing a program
-that display what part of a program has been reached
-and/or the values of particular varaiables at that point,
-that can be enabled and disabled based on the a parameter
-provided when the program is executed, e.g.,<br>
+a program with `trace on`. Program can be written with
+various "trace statements", i.e., print statements that
+display something about the program at that point
+(what part of a program has been reached
+and/or the values of particular varaiables at that point).
+Thus, a program can be designed so that the trace statements
+are only displayed when requested,, e.g.,<br>
 
 `java my_program`
 
-would execute a program in the "default" way. Running
+would execute a program in the "default" way
+(without trace statements displasyed). Running
 the program as<br>
 
 `java my_program trace_on`
