@@ -19,7 +19,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    
+    - name: Compile Java code
+      run: |
+        javac Main.java || exit 1  # Compile the Main.java file
+        echo "Compilation complete"
+        ls -l  # List files to verify if Main.class is generated
+        if [[ ! -f Main.class ]]; then
+          echo "Error: Main.class file not found!";
+          exit 1;
+        fi
     - name: Run program without trace
       id: no_trace
       run: |
