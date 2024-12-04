@@ -24,7 +24,8 @@ jobs:
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: main_test
-        setup-command: javac Main.java
+        setup-command: |
+          javac Main.java || exit 1
         command: ""
         timeout: 10
         max-score: 5
