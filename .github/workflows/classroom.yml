@@ -18,6 +18,28 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+
+    
+    - name: Run program without trace
+      id: no_trace
+      run: |
+        java main || exit 1  # Run without trace arguments and check output
+
+    - name: Run program with trace
+      id: trace_on
+      run: |
+        java main trace_on || exit 1  # Run with trace_on argument and check output
+
+    - name: Check for trace implementation
+      run: |
+        if [[ ! "$(steps.trace_on.outputs.result)" =~ "n = 1" ]]; then
+          echo "Trace statements are not printed correctly when 'trace_on' is passed.";
+          exit 1;
+        fi
+        echo "Trace statements are printed correctly."
+
+
+
       
     - name: main_test
       id: main_test
