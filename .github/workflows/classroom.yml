@@ -23,12 +23,12 @@ jobs:
     - name: Run program without trace
       id: no_trace
       run: |
-        java main || exit 1  # Run without trace arguments and check output
+        java Main || exit 1  # Run without trace arguments and check output
 
     - name: Run program with trace
       id: trace_on
       run: |
-        java main trace_on || exit 1  # Run with trace_on argument and check output
+        java Main trace_on || exit 1  # Run with trace_on argument and check output
 
     - name: Check for trace implementation
       run: |
