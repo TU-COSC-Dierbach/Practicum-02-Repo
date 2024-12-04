@@ -24,15 +24,13 @@ jobs:
       uses: actions/setup-java@v3
       with:
          java-version: '21'
-         distribution: 'temurin'  # You can change this to 'adoptopenjdk' if needed
-         setup-command: |
-           javac main.java || exit 1 
+         distribution: 'temurin'  # You can change this to 'adoptopenjdk' if neede
 
 
      # Compile the Java code
     - name: Compile Java code
       run: |
-        javac main.java || exit 1 
+        javac Main.java || exit 1 
      # Run Java code with trace_on argument (you can modify the arguments as needed)
     - name: Run Java program with trace_on
       run: java Main trace_on || exit 1
