@@ -25,7 +25,7 @@ jobs:
       with:
         test-name: main_test
         setup-command: |
-          javac Main.java || exit 1 
+          javac main.java || exit 1 
         command: ""
         timeout: 10
         max-score: 5
