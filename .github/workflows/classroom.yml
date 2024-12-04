@@ -30,7 +30,7 @@ jobs:
      # Compile the Java code
     - name: Compile Java code
       run: |
-        javac Main.java || exit 1 
+        javac main.java || exit 1 
      # Run Java code with trace_on argument (you can modify the arguments as needed)
     - name: Run Java program with trace_on
       run: java Main trace_on || exit 1

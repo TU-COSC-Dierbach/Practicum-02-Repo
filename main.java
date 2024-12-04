@@ -1,6 +1,6 @@
 // public static void main in Java
 
-public class Main {
+public class main {
   
   public static void main(String[] args) {
     int n = 1;
