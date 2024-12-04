@@ -28,15 +28,15 @@ jobs:
 
      # Compile the Java code
     - name: Compile Java code
-      run: javac main.java || exit 1
+      run: javac Main.java || exit 1
 
      # Run Java code with trace_on argument (you can modify the arguments as needed)
     - name: Run Java program with trace_on
-      run: java main trace_on || exit 1
+      run: java Main trace_on || exit 1
 
      # Or run Java program without any arguments
     - name: Run Java program without trace
-      run: java main || exit 1
+      run: java Main || exit 1
 
     - name: Compile Java code
       run: |
