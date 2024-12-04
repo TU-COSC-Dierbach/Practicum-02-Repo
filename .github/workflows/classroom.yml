@@ -18,13 +18,14 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+   
     - name: main_test
       id: main_test
       uses: classroom-resources/autograding-command-grader@v1
       with:
         test-name: main_test
-        setup-command: ''
-        command: " javac Main.java"
+        setup-command: javac main.java
+        command: ""
         timeout: 10
         max-score: 5
     - name: Autograding Reporter
