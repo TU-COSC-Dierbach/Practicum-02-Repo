@@ -9,7 +9,7 @@ public class main {
     while(n <= 10) {
       sum = sum + n;
 
-      if(args.length != 0 &&  #code her) {
+      if(args.length != 0 &&  args[0].equals("trace_on")) {
         System.out.println("n = " + n);
         System.out.println("sum = " + sum);
       }
@@ -19,4 +19,4 @@ public class main {
     System.out.println("Sum = " + sum);
   }
 
-};
+}
