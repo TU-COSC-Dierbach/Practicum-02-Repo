@@ -25,6 +25,7 @@ jobs:
         java-version: '21'  # Or the version you need
         java-package: jdk
         distribution: 'adoptopenjdk'
+        check-latest: false
 
     - name: Compile Java code
       run: javac Main.java || exit 1
