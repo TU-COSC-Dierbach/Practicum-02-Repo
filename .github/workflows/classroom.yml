@@ -33,19 +33,19 @@ jobs:
         javac main.java || exit 1 
      # Run Java code with trace_on argument (you can modify the arguments as needed)
     - name: Run Java program with trace_on
-      run: java Main trace_on || exit 1
+      run: java main trace_on || exit 1
 
      # Or run Java program without any arguments
     - name: Run Java program without trace
-      run: java Main || exit 1
+      run: java main || exit 1
 
     - name: Compile Java code
       run: |
-        javac Main.java || exit 1  # Compile the Main.java file
+        javac main.java || exit 1  # Compile the Main.java file
         echo "Compilation complete"
         ls -l  # List files to verify if Main.class is generated
-        if [[ ! -f Main.class ]]; then
-          echo "Error: Main.class file not found!";
+        if [[ ! -f main.class ]]; then
+          echo "Error: main.class file not found!";
           exit 1;
         fi
     - name: Run program without trace
