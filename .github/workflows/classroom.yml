@@ -26,7 +26,7 @@ jobs:
          java-version: '21'
          distribution: 'temurin'  # You can change this to 'adoptopenjdk' if neede
     - name: Compile Java file
-      run: javac Main.java || exit 1
+      run: javac main.java || exit 1
 
       # Run Java program without trace arguments
     - name: Run Java program without trace
