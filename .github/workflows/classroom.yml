@@ -39,6 +39,8 @@ jobs:
           echo "No trace statements found, correct behavior without trace_on."
         fi
 
+
+
     - name: Run with trace_on and check output
       run: |
         output=$(java main trace_on)
@@ -50,6 +52,22 @@ jobs:
           exit 1
         fi
 
+  
+    - name: Check for trace_on condition and if-else structure in code
+      run: |
+        if ! grep -q 'args\[0\]\.equals("trace_on")' main.java; then
+          echo "Error: The condition 'args[0].equals(\"trace_on\")' is missing in main.java."
+          exit 1
+        else
+          echo "Condition 'args[0].equals(\"trace_on\")' found."
+        fi
+
+        if ! grep -q 'if' main.java || ! grep -q 'else' main.java; then
+          echo "Error: Both 'if' and 'else' statements are required in main.java."
+          exit 1
+        else
+          echo "'if' and 'else' statements found."
+        fi
 
 
 
