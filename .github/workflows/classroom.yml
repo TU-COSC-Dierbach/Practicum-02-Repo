@@ -19,35 +19,35 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    #    # Set up Java (adjust the version as needed)
-    # - name: Set up Java
-    #   uses: actions/setup-java@v3
-    #   with:
-    #      java-version: '21'
-    #      distribution: 'temurin'  # You can change this to 'adoptopenjdk' if neede
+       # Set up Java (adjust the version as needed)
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+         java-version: '21'
+         distribution: 'temurin'  # You can change this to 'adoptopenjdk' if neede
 
 
-    #  # Compile the Java code
-    # - name: Compile Java code
-    #   run: |
-    #     javac main.java || exit 1 
-    #  # Run Java code with trace_on argument (you can modify the arguments as needed)
-    # - name: Run Java program with trace_on
-    #   run: java main trace_on || exit 1
+     # Compile the Java code
+    - name: Compile Java code
+      run: |
+        javac main.java || exit 1 
+     # Run Java code with trace_on argument (you can modify the arguments as needed)
+    - name: Run Java program with trace_on
+      run: java main trace_on || exit 1
 
-    #  # Or run Java program without any arguments
-    # - name: Run Java program without trace
-    #   run: java main || exit 1
+     # Or run Java program without any arguments
+    - name: Run Java program without trace
+      run: java main || exit 1
 
-    # - name: Compile Java code
-    #   run: |
-    #     javac main.java || exit 1  # Compile the Main.java file
-    #     echo "Compilation complete"
-    #     ls -l  # List files to verify if Main.class is generated
-    #     if [[ ! -f main.class ]]; then
-    #       echo "Error: main.class file not found!";
-    #       exit 1;
-    #     fi
+    - name: Compile Java code
+      run: |
+        javac main.java || exit 1  # Compile the Main.java file
+        echo "Compilation complete"
+        ls -l  # List files to verify if Main.class is generated
+        if [[ ! -f main.class ]]; then
+          echo "Error: main.class file not found!";
+          exit 1;
+        fi
     # - name: Run program without trace
     #   id: no_trace
 
