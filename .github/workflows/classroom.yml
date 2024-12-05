@@ -25,6 +25,8 @@ jobs:
          distribution: 'temurin'
     - name: Compile Java file
       run: javac main.java || exit 1
+
+
 # ///////////
   # Test without trace_on
     - name: Run without trace_on
@@ -57,7 +59,7 @@ jobs:
   
     - name: Compile java 2
       run: |
-        if ! grep -q '&& args\[0\]\.equals("trace_on")' main.java; then
+        if grep -q '&& args\[0\]\.equals("trace_on")' main.java; then
           echo "points=5" >> $GITHUB_ENV 
           echo "points=5" >> $GITHUB_OUTPUT
         else
@@ -66,7 +68,7 @@ jobs:
         fi
     - name: Compile java 3
       run: |
-        if ! grep -q 'if' main.java; then
+        if grep -q 'if' main.java; then
           echo "nwanted code modified...."
           exit 1
         fi
