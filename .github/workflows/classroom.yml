@@ -32,7 +32,7 @@ jobs:
     - name: Run Java program without trace
       id: run_without_trace
       run: |
-        java main || exit 1
+        java main > $GITHUB_WORKSPACE/output.txt || exit 1
       continue-on-error: true  # Allow the next steps to run even if this fails
 
     # Check output when running without trace arguments
@@ -47,7 +47,7 @@ jobs:
     - name: Run Java program with trace
       id: run_with_trace
       run: |
-        java main trace_on || exit 1
+         java main trace_on > $GITHUB_WORKSPACE/output.txt || exit 1
       continue-on-error: true  # Allow the next steps to run even if this fails
 
     # Check output when running with trace arguments
