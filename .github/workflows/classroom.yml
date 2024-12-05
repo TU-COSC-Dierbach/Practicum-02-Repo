@@ -28,33 +28,25 @@ jobs:
     - name: Compile Java file
       run: javac main.java || exit 1
 
-      # Run Java program without trace arguments
-    - name: Run Java program without trace
-      id: run_without_trace
+    - name: Run without trace_on and check output
       run: |
-        java main > $GITHUB_WORKSPACE/output.txt || exit 1
-      continue-on-error: true  # Allow the next steps to run even if this fails
-
-    # Check output when running without trace arguments
-    - name: Check output for trace-off
-      run: |
-        if ! grep -q "n =" $GITHUB_WORKSPACE/output.txt; then
-          echo "Error: Trace statements should not be displayed."
+        output=$(java main)
+        echo "$output"
+        if echo "$output" | grep -q "n = "; then
+          echo "Error: Trace statements should not be displayed without trace_on."
           exit 1
+        else
+          echo "No trace statements found, correct behavior without trace_on."
         fi
-        
-    # Run Java program with trace arguments
-    - name: Run Java program with trace
-      id: run_with_trace
-      run: |
-         java main trace_on > $GITHUB_WORKSPACE/output.txt || exit 1
-      continue-on-error: true  # Allow the next steps to run even if this fails
 
-    # Check output when running with trace arguments
-    - name: Check output for trace-on
+    - name: Run with trace_on and check output
       run: |
-        if ! grep -q "n =" $GITHUB_WORKSPACE/output.txt; then
-          echo "Error: Trace statements should be displayed."
+        output=$(java main trace_on)
+        echo "$output"
+        if echo "$output" | grep -q "n = 1" && echo "$output" | grep -q "sum = 1"; then
+          echo "Trace statements found, correct behavior with trace_on."
+        else
+          echo "Error: Trace statements not displayed with trace_on."
           exit 1
         fi
 
