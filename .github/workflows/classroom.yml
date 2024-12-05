@@ -27,27 +27,62 @@ jobs:
          distribution: 'temurin'  # You can change this to 'adoptopenjdk' if neede
 
 
-     # Compile the Java code
-    - name: Compile Java code
-      run: |
-        javac main.java || exit 1 
-     # Run Java code with trace_on argument (you can modify the arguments as needed)
-    - name: Run Java program with trace_on
-      run: java main trace_on || exit 1
-
-     # Or run Java program without any arguments
+      # Run Java program without trace arguments
     - name: Run Java program without trace
-      run: java main || exit 1
-
-    - name: Compile Java code
+      id: run_without_trace
       run: |
-        javac main.java || exit 1  # Compile the Main.java file
-        echo "Compilation complete"
-        ls -l  # List files to verify if Main.class is generated
-        if [[ ! -f main.class ]]; then
-          echo "Error: main.class file not found!";
-          exit 1;
+        java Main || exit 1
+      continue-on-error: true  # Allow the next steps to run even if this fails
+
+    # Check output when running without trace arguments
+    - name: Check output for trace-off
+      run: |
+        if ! grep -q "n =" $GITHUB_WORKSPACE/output.txt; then
+          echo "Error: Trace statements should not be displayed."
+          exit 1
         fi
+        
+    # Run Java program with trace arguments
+    - name: Run Java program with trace
+      id: run_with_trace
+      run: |
+        java Main trace_on || exit 1
+      continue-on-error: true  # Allow the next steps to run even if this fails
+
+    # Check output when running with trace arguments
+    - name: Check output for trace-on
+      run: |
+        if ! grep -q "n =" $GITHUB_WORKSPACE/output.txt; then
+          echo "Error: Trace statements should be displayed."
+          exit 1
+        fi
+
+
+
+
+
+
+    #  # Compile the Java code
+    # - name: Compile Java code
+    #   run: |
+    #     javac main.java || exit 1 
+    #  # Run Java code with trace_on argument (you can modify the arguments as needed)
+    # - name: Run Java program with trace_on
+    #   run: java main trace_on || exit 1
+
+    #  # Or run Java program without any arguments
+    # - name: Run Java program without trace
+    #   run: java main || exit 1
+
+    # - name: Compile Java code
+    #   run: |
+    #     javac main.java || exit 1  # Compile the Main.java file
+    #     echo "Compilation complete"
+    #     ls -l  # List files to verify if Main.class is generated
+    #     if [[ ! -f main.class ]]; then
+    #       echo "Error: main.class file not found!";
+    #       exit 1;
+    #     fi
     # - name: Run program without trace
     #   id: no_trace
 
