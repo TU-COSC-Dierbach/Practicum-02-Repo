@@ -6,7 +6,7 @@ public class main {
     int n = 1;
     int sum = 0;
 
-    while(n <= 10) 
+    while(n <= 10) {
       sum = sum + n;
 
       if(args.length != 0 ) {
