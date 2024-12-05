@@ -32,9 +32,11 @@ jobs:
         if grep -q 'args\[0\]\.equals("trace_on")' main.java; then
           echo "points=5" >> $GITHUB_ENV 
           echo "points=5" >> $GITHUB_OUTPUT
+          exit 1
         else
           echo "points=0" >> $GITHUB_ENV 
           echo "points=0" >> $GITHUB_OUTPUT
+          exit 1
         fi
     - name: Compile java 3
       run: |
