@@ -18,31 +18,30 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-
-    #    # Set up Java (adjust the version as needed)
-    # - name: Set up Java
-    #   uses: actions/setup-java@v3
-    #   with:
-    #      java-version: '21'
-    #      distribution: 'temurin'  # You can change this to 'adoptopenjdk' if neede
-    # - name: Compile Java file
-    #   run: javac main.java || exit 1
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+         java-version: '21'
+         distribution: 'temurin'
+    - name: Compile Java file
+      run: javac main.java || exit 1
   
-    # - name: Check for trace_on condition and if-else structure in code
-    #   run: |
-    #     if ! grep -q 'args\[0\]\.equals("trace_on")' main.java; then
-    #       echo "Error: The condition 'args[0].equals(\"trace_on\")' is missing in main.java."
-    #       exit 1
-    #     else
-    #       echo "Condition 'args[0].equals(\"trace_on\")' found."
-    #     fi
-
-    #     if ! grep -q 'if' main.java; then
-    #       echo "Error: Both 'if' and 'else' statements are required in main.java."
-    #       exit 1
-    #     else
-    #       echo "'if' and 'else' statements found."
-    #     fi
+    - name: Compile java 2
+      run: |
+        if ! grep -q 'args\[0\]\.equals("trace_on")' main.java; then
+          echo "points=5" >> $GITHUB_ENV 
+          echo "points=5" >> $GITHUB_OUTPUT
+          exit 1
+        else
+          echo "points=0" >> $GITHUB_ENV 
+          echo "points=0" >> $GITHUB_OUTPUT
+        fi
+    - name: Compile java 3
+      run: |
+        if ! grep -q 'if' main.java; then
+          echo "nwanted code modified...."
+          exit 1
+        fi
       
     - name: main_test
       id: main_test
@@ -52,18 +51,11 @@ jobs:
         setup-command: |
           javac main.java || exit 1 
         command: |
-          if ! grep -q 'args\[0\]\.equals("trace_on")' main.java; then
-          echo "Error: implement the write trace on code...."
-          java main
-          exit 1
+          if [ "${{ steps.s_value.outputs.points }}" -eq 5 ]; then
+            echo "✅ Test Passed)."
           else
-            echo "Correct...."
-            java main trace_on
-          fi
-
-          if ! grep -q 'if' main.java; then
-            echo "Unwanted code modified...."
-            exit 1"
+            echo "S❌ Test Failed"
+            exit 1
           fi
         timeout: 10
         max-score: 5
