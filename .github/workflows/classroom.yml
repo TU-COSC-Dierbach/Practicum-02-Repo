@@ -25,10 +25,39 @@ jobs:
          distribution: 'temurin'
     - name: Compile Java file
       run: javac main.java || exit 1
+# ///////////
+  # Test without trace_on
+    - name: Run without trace_on
+      run: |
+        output=$(java main)
+        echo "$output"
+        if [[ "$output" != *"Sum = 55"* ]]; then
+          echo "Error: Expected 'Sum = 55' without trace_on."
+          exit 1
+        fi
+
+    # Test with trace_on
+    - name: Run with trace_on
+      run: |
+        output=$(java main trace_on)
+        echo "$output"
+        if [[ "$output" != *"n = 1"* || "$output" != *"Sum = 55"* ]]; then
+          echo "Error: Trace statements missing when trace_on is used."
+          exit 1
+        fi
+
+
+
+
+
+
+
+
+      # ?/////////
   
     - name: Compile java 2
       run: |
-        if ! grep -q '&& args[0].equals("trace_on")' main.java; then
+        if ! grep -q '&& args\[0\]\.equals("trace_on")' main.java; then
           echo "points=5" >> $GITHUB_ENV 
           echo "points=5" >> $GITHUB_OUTPUT
         else
